@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const Router = require("./routes")
 
 const mongoose = require("mongoose");
 
@@ -28,6 +29,8 @@ db.once("open", function () {
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
+
+app.use(Router);
 
 const PORT = process.env.PORT || 8080;
 
