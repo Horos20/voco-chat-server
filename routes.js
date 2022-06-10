@@ -1,10 +1,17 @@
 const express = require("express");
 const chatModel = require("./models");
 const app = express();
+const cors = require("cors");
 
-app.post("/addData", async (req, res) => {
-    const userName = "John";
-    const text = "Lorem ipsum";
+const corsOptions = {
+    origin: 'http://localhost:3000'
+}
+
+app.use(cors(corsOptions))
+
+app.post("/", async (req, res) => {
+    const userName = req.body.userName;
+    const text = req.body.text;
     const messageData = new chatModel({userName: userName, text: text});
 
     try {
@@ -15,7 +22,7 @@ app.post("/addData", async (req, res) => {
     }
 });
 
-app.get("/getData", async (req, res) => {
+app.get("/", async (req, res) => {
     const messageDataGet = await chatModel.find({});
 
     try {

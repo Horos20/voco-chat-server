@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
 const Router = require("./routes")
 
 const mongoose = require("mongoose");
@@ -26,9 +25,7 @@ db.once("open", function () {
     console.log("Connected successfully");
 });
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-});
+app.use(express.json());
 
 app.use(Router);
 
