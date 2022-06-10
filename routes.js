@@ -1,13 +1,6 @@
 const express = require("express");
 const chatModel = require("./models");
 const app = express();
-const cors = require("cors");
-
-const corsOptions = {
-    origin: 'http://localhost:3000'
-}
-
-app.use(cors(corsOptions))
 
 app.post("/", async (req, res) => {
     const userName = req.body.userName;
