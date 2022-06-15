@@ -47,7 +47,9 @@ app.use(Router);
 /*   Socket.io connection   */
 io.on('connection', socket => {
     socket.on('sendMessage', (message, user) => {
-        socket.broadcast.emit('receive-message', message, user)
+        const d = new Date();
+        const date = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ':' + ("0" + d.getSeconds()).slice(-2);
+        socket.broadcast.emit('receive-message', message, user, date)
     })
  });
 
